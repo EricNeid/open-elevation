@@ -1,15 +1,16 @@
+<!-- markdownlint-disable MD024 -->
 # Hosting your own Open-Elevation instance
 
 You can freely host your own instance of Open-Elevation. There are two main options: Docker or native. We recommend using docker to ensure that your environment matches the development environment
 
 ## Clone the repository
+
 First things first, clone the repository and `cd` onto its directory
 
-```
+```bash
 git clone http://github.com/Jorl17/open-elevation
 cd open-elevation
 ```
-
 
 ## Using Docker
 
@@ -25,7 +26,7 @@ Open-Elevation doesn't come with any data of its own, but it offers a set of scr
 
 If you wish to host the whole world, just run
 
-```
+```bash
 mkdir data # Create the target folder for the dataset
 docker run -t -i -v $(pwd)/data:/code/data openelevation/open-elevation /code/create-dataset.sh
 ```
@@ -36,18 +37,17 @@ The above command should have downloaded the entire SRTM dataset and split it in
 
 If you don't want to use the whole world, you can provide your own dataset in GeoTIFF format, compatible with the SRTM dataset. Simply drop the files for the regions you desire in the `data` directory. You are advised to split these files in smaller chunks so as to make Open-Elevation less memory-hungry (the largest file has to fit in memory). The `create-tiles.sh` is capable of doing this, and you can see it working in `create-dataset.sh`. Since you are using docker, you should always run the commands within the container. For example:
 
-```
+```bash
 docker run -t -i -v $(pwd)/data:/code/data openelevation/open-elevation /code/create-tiles.sh  /code/data/SRTM_NE_250m.tif 10 10
 ```
 
 The above example command splits `SRTM_NE_250m.tif` into 10 by 10 files inside the `/code/data` directory, which is mapped to `$(pwd)/data`.
 
-
 ### Running the Server
 
 Now that you've got your data, you're ready to run Open-Elevation! Simply run
 
-```
+```bash
 docker run -t -i -v $(pwd)/data:/code/data -p 8080:8080 openelevation/open-elevation
 ```
 
@@ -63,14 +63,13 @@ You should now be able to go to `https://localhost:8080` for all your open-route
 
 ### Installing Dependencies
 
-In order for Open-Elevation to work, you need `GDAL` and `libspatialindex`. For the full process to work you also need a version of `unrar`. 
+In order for Open-Elevation to work, you need `GDAL` and `libspatialindex`. For the full process to work you also need a version of `unrar`.
 
 The setup for `gdal` depends on the distro and may even change among distro versions, thus being outside the scope of this documentation. Please follow the documentation found in [GDAL's homepage](http://www.gdal.org/).
 
 The following are instructions for Ubuntu/Debian compatible distros, and similar ones might apply to your particular setup. Again, make sure you also install GDAL. Please consider using a `virtualenv` instead of using the default python installation for the following commands.
-	
 
-```
+```bash
 apt-get update -y
 apt-get install -y libspatialindex-dev unrar-free bc
 pip install -r requirements.txt
@@ -86,7 +85,7 @@ Open-Elevation doesn't come with any data of its own, but it offers a set of scr
 
 If you wish to host the whole world, just run
 
-```
+```bash
 ./create-dataset.sh
 ```
 
@@ -102,7 +101,7 @@ After this process, you should now have your dataset in the `tiles` subdirectory
 
 Now that you've got your data, you're ready to run Open-Elevation! Simply run
 
-```
+```bash
 python server.py
 ```
 
