@@ -28,7 +28,7 @@ If you wish to host the whole world, just run
 
 ```bash
 mkdir data # Create the target folder for the dataset
-docker run -t -i -v $(pwd)/data:/code/data openelevation/open-elevation /code/create-dataset.sh
+docker run -t -i -v $(pwd)/data:/code/data ericneid/open-elevation:LATEST_VERSION /code/create-dataset.sh
 ```
 
 The above command should have downloaded the entire SRTM dataset and split it into multiple smaller files in the `data` directory. **Be aware that this directory may be over 20 GB in size after the process is completed!**
