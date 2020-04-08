@@ -8,13 +8,34 @@ You can freely host your own instance of Open-Elevation. There are two main opti
 First things first, clone the repository and `cd` onto its directory
 
 ```bash
-git clone http://github.com/Jorl17/open-elevation
+git clone git@github.com:EricNeid/open-elevation.git
 cd open-elevation
 ```
 
 ## Using Docker
 
-An image of Open-Elevation is available at [DockerHub](https://hub.docker.com/r/openelevation/open-elevation/). You can use this image as the basis for your Open-Elevation installation.
+You can easily build your own docker image with this repository.
+
+Make sure that docker is installed and clone the project. You can use the provided makefile to build yourself
+a docker image.
+
+Build your image:
+
+```bash
+make build
+```
+
+You can also export the image and copy it to your server:
+
+```bash
+make save
+```
+
+Load it on your server
+
+```bash
+docker load --input ericneid_open-elevation_0.1.0.docker.img
+```
 
 The Docker image roots itself at `/code/` and expects that all GeoTIFF datafiles be located at `/code/data/`, which you should mount using a volume.
 
