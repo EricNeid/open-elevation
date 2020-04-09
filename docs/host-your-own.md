@@ -69,7 +69,7 @@ The above example command splits `SRTM_NE_250m.tif` into 10 by 10 files inside t
 Now that you've got your data, you're ready to run Open-Elevation! Simply run
 
 ```bash
-docker run -t -i -v $(pwd)/data:/code/data -p 8080:8080 ericneid_open-elevation_0.1.0.docker.img
+docker run -t -i -v $(pwd)/data:/code/data -p 8080:8080 ericneid/open-elevation:0.1.0
 ```
 
 This command:
