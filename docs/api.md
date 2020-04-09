@@ -33,8 +33,7 @@ If there is no recorded elevation at the provided coordinate, sea level (0 meter
 }
 ```
 
-
-### Example:
+### Example
 
 #### Request
 
