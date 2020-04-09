@@ -1,31 +1,28 @@
 #!/usr/bin/env bash
 
-OUTDIR="/code/data"
+OUTDIR="data"
 if [ ! -e $OUTDIR ] ; then
     echo $OUTDIR does not exist!
 fi
 
-CUR_DIR=$(pwd)
-
-set -eu
-
 cd $OUTDIR
+
+echo Downloading data...
 ../download-srtm-data.sh
-echo 'Creating tiles from SRTM_NE_250m_TIF/SRTM_NE_250m.tif'
-../create-tiles.sh SRTM_NE_250m_TIF/SRTM_NE_250m.tif 10 10
 
-echo 'Creating tiles from SRTM_SE_250m_TIF/SRTM_SE_250m.tif'
-../create-tiles.sh SRTM_SE_250m_TIF/SRTM_SE_250m.tif 10 10
+echo Creating tiles: SRTM_NE_250m
+../create-tiles.sh SRTM_NE_250m.tif 10 10 && \
+rm -rf SRTM_NE_250m.tif
 
-echo 'Creating tiles from SRTM_W_250m_TIF/SRTM_W_250m.tif'
-../create-tiles.sh SRTM_W_250m_TIF/SRTM_W_250m.tif 10 20
+echo Creating tiles: SRTM_SE_250m
+../create-tiles.sh SRTM_SE_250m.tif 10 10 && \
+rm -rf SRTM_SE_250m.tif
 
-echo 'Cleaning up'
-rm -rf SRTM_NE_250m_TIF
-rm -rf SRTM_SE_250m_TIF
-rm -rf SRTM_W_250m_TIF
-rm -rf *.rar
+echo Creating tiles: SRTM_W_250m
+../create-tiles.sh SRTM_W_250m.tif 10 20 && \
+rm -rf SRTM_W_250m.tif
 
-echo 'Finished creating dataset'
+echo removing unused data
+rm -rf readme.txt
 
-cd $CUR_DIR
+echo Finished creating dataset

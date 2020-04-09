@@ -18,7 +18,7 @@ RUN dos2unix /code/create-dataset.sh & \
 
 # Ready to start
 WORKDIR /code
-
+RUN mkdir data
 CMD python server.py
 
 EXPOSE 8080
