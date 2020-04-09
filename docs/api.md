@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD024 -->
 # Public API Documentation
 
 Open-Elevation's API is extremely simple -- after all, it fits a single, specific, simple task. There is **only one endpoint**, which is documented here.
@@ -8,7 +9,7 @@ Returns ("looks up") the elevation at one or more `(latitude,longitude)` points.
 
 The GET API is limited to **1024** bytes in the request line. If you plan on making large requests, consider using the POST api.
 
-### Parameters:
+### Parameters
 
 * **`locations`**: List of locations, separated by `|` in `latitude, longitude` format, similar to the Google Elevation API.
 
@@ -20,15 +21,15 @@ If there is no recorded elevation at the provided coordinate, sea level (0 meter
 
 ```json
 {
-	"results":
-	[
-		{
-			"latitude": ...,
-			"longitude": ...,
-			"elevation": ...
-		},
-		...
-	]
+  "results":
+  [
+    {
+      "latitude": ...,
+      "longitude": ...,
+      "elevation": ...
+    },
+    ...
+  ]
 }
 ```
 
@@ -37,7 +38,7 @@ If there is no recorded elevation at the provided coordinate, sea level (0 meter
 
 #### Request
 
-```
+```bash
 curl https://api.open-elevation.com/api/v1/lookup\?locations\=10,10\|20,20\|41.161758,-8.583933
 ```
 
@@ -66,17 +67,17 @@ curl https://api.open-elevation.com/api/v1/lookup\?locations\=10,10\|20,20\|41.1
 }
 ```
 
-
 ## `POST /api/v1/lookup`
 
 Returns ("looks up") the elevation at one or more `(latitude,longitude)` points.
 
 The POST API currently has no limit
 
-### Parameters:
+### Parameters
 
 * A JSON (and respective headers) is required with the format:
-```
+
+```json
 {
     "locations":
     [
@@ -88,7 +89,6 @@ The POST API currently has no limit
 }
 ```
 
-
 ### Response format
 
 A JSON object with a single list of results, in the `results` field is returned. Each result contains `latitude`, `longitude` and `elevation`. The results are in the same order as the request parameters. **Elevation is in meters**.
@@ -97,44 +97,43 @@ If there is no recorded elevation at the provided coordinate, sea level (0 meter
 
 ```json
 {
-	"results":
-	[
-		{
-			"latitude": ...,
-			"longitude": ...,
-			"elevation": ...
-		},
-		...
-	]
+  "results":
+  [
+    {
+      "latitude": ...,
+      "longitude": ...,
+      "elevation": ...
+   },
+   ...
+  ]
 }
 ```
 
-
-### Example:
+### Example
 
 #### Request
 
-```
+```bash
 curl -X POST \
   https://api.open-elevation.com/api/v1/lookup \
   -H 'Accept: application/json' \
   -H 'Content-Type: application/json' \
   -d '{
-	"locations":
-	[
-		{
-			"latitude": 10,
-			"longitude": 10
-		},
-		{
-			"latitude":20,
-			"longitude": 20
-		},
-		{
-			"latitude":41.161758,
-			"longitude":-8.583933
-		}
-	]
+  "locations":
+  [
+   {
+     "latitude": 10,
+     "longitude": 10
+   },
+   {
+     "latitude":20,
+     "longitude": 20
+   },
+   {
+     "latitude":41.161758,
+     "longitude":-8.583933
+   }
+  ]
 
 }'
 ```
