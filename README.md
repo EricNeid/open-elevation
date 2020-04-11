@@ -21,3 +21,4 @@ aswell and leave them a donation.
 
 * Updated url to srtm dataset
 * Added makefile for docker image
+* Small adjustments to docs and scripts
