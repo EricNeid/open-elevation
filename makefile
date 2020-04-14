@@ -1,4 +1,4 @@
-version = 0.1.0
+version = 0.1.1
 
 image  = ericneid/open-elevation:$(version)
 output = ericneid_open-elevation_$(version).docker.img
