@@ -16,7 +16,7 @@ You can learn more about the project, including its **free public API** in [the 
 
 ## Attributation & changes
 
-This project is forked from <https://github.com/Jorl17/open-elevation>. Make sure to check to check the open-elevation project
+This project is forked from <https://github.com/Jorl17/open-elevation>. Make sure to check the open-elevation project
 aswell and leave them a donation.
 
 * Updated url to srtm dataset
