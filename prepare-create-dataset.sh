@@ -1,25 +1,28 @@
 #!/usr/bin/env bash
 
 OUTDIR="data"
-if [ ! -e $OUTDIR ] ; then
-    echo $OUTDIR does not exist!
+if [ ! -d "$OUTDIR" ]; then
+  mkdir "$OUTDIR"
+  echo "Directory '$OUTDIR' created."
+else
+  echo "Directory '$OUTDIR' already exists."
 fi
 
 cd $OUTDIR
 
 echo Downloading data...
-../download-srtm-data.sh
+../prepare-download-srtm.sh
 
 echo Creating tiles: SRTM_NE_250m
-../create-tiles.sh SRTM_NE_250m.tif 10 10 && \
+../prepare-create-tiles.sh SRTM_NE_250m.tif 10 10 && \
 rm -rf SRTM_NE_250m.tif
 
 echo Creating tiles: SRTM_SE_250m
-../create-tiles.sh SRTM_SE_250m.tif 10 10 && \
+../prepare-create-tiles.sh SRTM_SE_250m.tif 10 10 && \
 rm -rf SRTM_SE_250m.tif
 
 echo Creating tiles: SRTM_W_250m
-../create-tiles.sh SRTM_W_250m.tif 10 20 && \
+../prepare-create-tiles.sh SRTM_W_250m.tif 10 20 && \
 rm -rf SRTM_W_250m.tif
 
 echo removing unused data
