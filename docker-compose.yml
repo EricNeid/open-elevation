@@ -2,6 +2,6 @@ services:
 
   openelevation:
     image:
-      ericneid/open-elevation:0.2.0
+      ericneid/open-elevation:0.2.1
     ports: 
       - 8080:8080
