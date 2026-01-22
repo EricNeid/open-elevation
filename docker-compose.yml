@@ -2,6 +2,11 @@ services:
 
   openelevation:
     image:
-      ericneid/open-elevation:0.2.1
+      neidhardt/open-elevation:0.2.9
     ports: 
       - 8080:8080
+    volumes:
+    - ./data:/code/data
+
+volumes:
+  data:
